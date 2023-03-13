@@ -13,8 +13,8 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link, useNavigate } from "react-router-dom";
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Badge } from "@mui/material";
 import { useSelector } from "react-redux";
 const settings = ["Profile", "Account", "Dashboard"];
@@ -29,33 +29,20 @@ const pages = [
     name: "Categories",
     url: "/categories/list",
   },
-  {
-    id: 2,
-    name: "Search",
-    url: "/search",
-  },
+
   {
     id: 3,
     name: "Contact",
     url: "/contact",
   },
-  {
-    id: 4,
-    name: "Login",
-    url: "/login",
-  },
 ];
 
 const Navi = () => {
-
   const navigate = useNavigate();
-  const {user} = useSelector(state => state.user);
+  const { user } = useSelector((state) => state.user);
 
-
-  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  
 
   const handleLogout = () => {
     handleCloseUserMenu();
@@ -78,20 +65,17 @@ const Navi = () => {
     setAnchorElUser(null);
   };
 
-
-
   return (
     <header>
-     
-      <AppBar position='static'>
-        <Container maxWidth='xl'>
+      <AppBar position="static">
+        <Container maxWidth="xl">
           <Toolbar disableGutters>
             <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
-              variant='h6'
+              variant="h6"
               noWrap
-              component='a'
-              href='/'
+              component="a"
+              href="/"
               sx={{
                 mr: 2,
                 display: { xs: "none", md: "flex" },
@@ -107,17 +91,17 @@ const Navi = () => {
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
-                size='large'
-                aria-label='account of current user'
-                aria-controls='menu-appbar'
-                aria-haspopup='true'
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color='inherit'
+                color="inherit"
               >
                 <MenuIcon />
               </IconButton>
               <Menu
-                id='menu-appbar'
+                id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
                   vertical: "bottom",
@@ -139,17 +123,17 @@ const Navi = () => {
                     key={page.id}
                     onClick={() => handleCloseNavMenu(page.url)}
                   >
-                    <Typography textAlign='center'>{page.name}</Typography>
+                    <Typography textAlign="center">{page.name}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
             <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
-              variant='h5'
+              variant="h5"
               noWrap
-              component='a'
-              href=''
+              component="a"
+              href=""
               sx={{
                 mr: 2,
                 display: { xs: "flex", md: "none" },
@@ -162,7 +146,6 @@ const Navi = () => {
               }}
             >
               E-TRADE-STORE
-              
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
@@ -175,61 +158,31 @@ const Navi = () => {
                 </Button>
               ))}
             </Box>
-          
+
             {/* <Badge badgeContent={cart.length} color="secondary"> */}
             <IconButton aria-label="favori">
-                  <FavoriteIcon onClick={()=>navigate("/favoriteList")}></FavoriteIcon>
+              <FavoriteIcon
+                onClick={() => navigate("/favoriteList")}
+              ></FavoriteIcon>
             </IconButton>
-        
-            <IconButton aria-label="cart">
-      <ShoppingBasketIcon  onClick={()=>navigate("/basketlist")} />
-</IconButton>
-          
-            
 
-            {/* </Badge> */}
-            {user.isLogin && (
-              <Box sx={{ flexGrow: 0, mx:3 }}>
-                <Tooltip title='Open settings'>
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt={`${user?.firstName} ${user?.lastName}`}
-                      // src={`/authors/${user?.userId%21}.jpg`}
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id='menu-appbar'
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                      <Typography textAlign='center'>{setting}</Typography>
-                    </MenuItem>
-                  ))}
-                  <MenuItem
-                    key={101}
-                    onClick={() => {
-                      handleLogout();
-                    }}
-                  >
-                    Logout
-                  </MenuItem>
-                </Menu>
-              </Box>
-            )}
+            <IconButton aria-label="cart">
+              <ShoppingBasketIcon onClick={() => navigate("/basketlist")} />
+            </IconButton>
+            <Button
+              onClick={() => navigate("/login")}
+              variant="contained"
+              color="secondary"
+            >
+              Login
+            </Button>
+            <Button
+              style={{ marginLeft: 10 }}
+              variant="contained"
+              color="secondary"
+            >
+              Kayıt Ol
+            </Button>
           </Toolbar>
         </Container>
       </AppBar>

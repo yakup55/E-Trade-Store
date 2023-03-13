@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { setLoading } from "../../redux/actions/appActions";
 import { getProductList } from "../../redux/actions/productActions";
 import Product from "../product/Product";
-import style from "./list.module.css";
+import Search from "../search/Search";
 import PriceBrandCtegroyList from "./PriceBrandCtegroyList";
 export default function ProductList() {
   const { products } = useSelector((state) => state.product);
@@ -29,14 +29,16 @@ export default function ProductList() {
   const navigate = useNavigate();
   return (
     // <Container sx={{ mt: 2 }} maxWidth='md'>
-    <div>
+    <>
       <Grid
-        h="150"
+        h="200"
         templateRows="repeat(2, 1fr)"
         templateColumns="repeat(5, 1fr)"
         gap={4}
       >
+
         <GridItem rowSpan={5} colSpan={0}>
+      
           <PriceBrandCtegroyList></PriceBrandCtegroyList>
         </GridItem>
         {products?.map((product) => (
@@ -66,8 +68,6 @@ export default function ProductList() {
           </h4>
         </GridItem>
       </Grid>
-    </div>
-
-    // </Container>
+    </>
   );
 }

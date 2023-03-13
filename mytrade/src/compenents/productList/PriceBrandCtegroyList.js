@@ -1,3 +1,4 @@
+import { Heading } from "@chakra-ui/react";
 import {
   Checkbox,
   Container,
@@ -31,6 +32,7 @@ import {
   productPrice4,
 } from "../../redux/actions/productActions";
 import { getsizeList } from "../../redux/actions/sizeActions";
+import Search from "../search/Search";
 export default function PriceBrandCtegroyList() {
   const dispacth = useDispatch();
   const navigate = useNavigate();
@@ -83,9 +85,11 @@ export default function PriceBrandCtegroyList() {
     dispacth(productPrice4());
   };
   return (
-    <div>
-      <div style={{ fontSize: 10 }}>
-        <FormControl>
+    <>
+      <Heading>Filtreler</Heading>
+        <Search></Search>
+    <Container>
+  <FormControl>
           <FormLabel id="demo-radio-buttons-group-label">
             Fiyata Göre Sırala
           </FormLabel>
@@ -138,9 +142,8 @@ export default function PriceBrandCtegroyList() {
             />
           </RadioGroup>
         </FormControl>
-      </div>
-      <div>
-        <FormLabel id="demo-radio-buttons-group-label">Markalar</FormLabel>
+      <FormControl>
+         <FormLabel id="demo-radio-buttons-group-label">Markalar</FormLabel>
         <FormGroup>
           {brands.map((brand) => (
             <FormControlLabel
@@ -150,10 +153,9 @@ export default function PriceBrandCtegroyList() {
             ></FormControlLabel>
           ))}
         </FormGroup>
-      </div>
+      </FormControl>
 
-      <div>
-        <FormControl>
+       <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Kategoriler
           </FormLabel>
@@ -171,9 +173,8 @@ export default function PriceBrandCtegroyList() {
             ))}
           </RadioGroup>
         </FormControl>
-      </div>
-      <div>
-        <FormControl>
+
+          <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Renkler
           </FormLabel>
@@ -191,8 +192,28 @@ export default function PriceBrandCtegroyList() {
             ))}
           </RadioGroup>
         </FormControl>
-      </div>
-      <div>
+
+          
+
+         <FormControl>
+          <FormLabel id="demo-controlled-radio-buttons-group">
+            Boyuta göre
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+          >
+            {sizes.map((size) => (
+              <FormControlLabel
+                onClick={() => sizeList(size.sizeId)}
+                value={size.sizeName}
+                control={<Radio />}
+                label={size.sizeName}
+              />
+            ))}
+          </RadioGroup>
+        </FormControl>
+        
         <FormControl>
           <FormLabel id="demo-controlled-radio-buttons-group">
             Numrasına göre
@@ -211,27 +232,7 @@ export default function PriceBrandCtegroyList() {
             ))}
           </RadioGroup>
         </FormControl>
-      </div>
-      <div>
-        <FormControl>
-          <FormLabel id="demo-controlled-radio-buttons-group">
-            Boyuta göre
-          </FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-controlled-radio-buttons-group"
-            name="controlled-radio-buttons-group"
-          >
-            {sizes.map((size) => (
-              <FormControlLabel
-                onClick={() => sizeList(size.sizeId)}
-                value={size.sizeName}
-                control={<Radio />}
-                label={size.sizeName}
-              />
-            ))}
-          </RadioGroup>
-        </FormControl>
-      </div>
-    </div>
+    </Container>
+    </>
   );
 }

@@ -15,8 +15,8 @@ export default function Login() {
   const authenticationService = new AuthenticationService();
   const { handleSubmit, handleChange } = useFormik({
     initialValues: {
-      userName: "yakup",
-      userPassword: "12345",
+      userName: "",
+      userPassword: "",
     },
     onSubmit: async (values) => {
       const result =await authenticationService.login(values);
@@ -72,11 +72,11 @@ export default function Login() {
                 </InputAdornment>
               ),
             }}
-            placeholder='Username'
-            label='Username'
+            placeholder='User Email'
+            label='User Email'
             type='text'
-            id="userName"
-            name="userName"
+            id="userEmail"
+            name="userEmail"
             onChange={handleChange}
           />
 

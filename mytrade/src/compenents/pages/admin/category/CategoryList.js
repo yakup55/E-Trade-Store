@@ -18,11 +18,12 @@ import {
   getCategoryList,
   getDeleteCategory,
 } from "../../../../redux/actions/categroyActions";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 export default function CategoryList() {
   const { categories } = useSelector((state) => state.category);
   const dispatch = useDispatch();
-const navigate=useNavigate();
+  const navigate = useNavigate();
   const handleCategoryDeleted = (id) => {
     dispatch(getDeleteCategory(id));
     dispatch(
@@ -35,21 +36,31 @@ const navigate=useNavigate();
   useEffect(() => {
     dispatch(getCategoryList());
   }, []);
-  const handleCategoryActive=(id)=>{
+  const handleCategoryActive = (id) => {
     dispatch(categoryActive);
     navigate("/admin/categories/list");
-  }
-  const handleCategoryPassive=(id)=>{
+  };
+  const handleCategoryPassive = (id) => {
     dispatch(categoryPassive);
     navigate("/admin/categories/list");
-  }
+  };
   return (
     <Container>
       <br></br>
       <h2>Admin Category List({categories.length})</h2>
       <br></br>
-        <Button onClick={()=>navigate("/admin/categories/add")} style={{margin:"auto",display:"block",backgroundColor:"blue",color:"black"}}>Category Add</Button>
-        <br></br>
+      <Button
+        onClick={() => navigate("/admin/categories/add")}
+        style={{
+          margin: "auto",
+          display: "block",
+          backgroundColor: "blue",
+          color: "black",
+        }}
+      >
+        Category Add
+      </Button>
+      <br></br>
       <TableContainer>
         <Table>
           <TableRow>
@@ -68,18 +79,60 @@ const navigate=useNavigate();
               <TableCell>{category.categoryId}</TableCell>
               <TableCell>{category.categoryName}</TableCell>
               <TableCell>
-              <img style={{width:100,height:100}} src={`${category.categoryImage}`}></img>
+                <img
+                  style={{ width: 100, height: 100 }}
+                  src={`${category.categoryImage}`}
+                ></img>
               </TableCell>
-              <TableCell>{category.categoryStatus}</TableCell>
-                <TableCell><Button style={{backgroundColor:"yellow",color:"black"}} onClick={()=>handleCategoryActive(category.categoryId)}>Aktif</Button></TableCell>
-                <TableCell><Button style={{backgroundColor:"green",color:"black"}} onClick={()=>handleCategoryPassive(category.categoryId)}>Pasif</Button></TableCell>
-              <TableCell>  <Button  style={{backgroundColor:"orange",color:"black"}} onClick={()=>navigate(`/admin/categories/update/${category.categoryId}`)} >Update</Button></TableCell>
-               <TableCell> <Button style={{backgroundColor:"red",color:"black"}} onClick={()=>handleCategoryDeleted(category.categoryId)}>Delete</Button></TableCell>
+              {category.categoryStatus === true && (
+                <TableCell>
+                  <CheckCircleIcon></CheckCircleIcon>
+                </TableCell>
+              )}
+              {category.categoryStatus === false && (
+                <TableCell>
+                  <HighlightOffIcon></HighlightOffIcon>
+                </TableCell>
+              )}
+              <TableCell>
+                <Button
+                  style={{ backgroundColor: "yellow", color: "black" }}
+                  onClick={() => handleCategoryActive(category.categoryId)}
+                >
+                  Aktif
+                </Button>
+              </TableCell>
+              <TableCell>
+                <Button
+                  style={{ backgroundColor: "green", color: "black" }}
+                  onClick={() => handleCategoryPassive(category.categoryId)}
+                >
+                  Pasif
+                </Button>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Button
+                  style={{ backgroundColor: "orange", color: "black" }}
+                  onClick={() =>
+                    navigate(`/admin/categories/update/${category.categoryId}`)
+                  }
+                >
+                  Update
+                </Button>
+              </TableCell>
+              <TableCell>
+                {" "}
+                <Button
+                  style={{ backgroundColor: "red", color: "black" }}
+                  onClick={() => handleCategoryDeleted(category.categoryId)}
+                >
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
-        
         </Table>
-        
       </TableContainer>
     </Container>
   );

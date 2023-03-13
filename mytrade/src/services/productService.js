@@ -1,7 +1,7 @@
 import axios from "axios";
 
 class ProductService {
-  constructor() {     
+  constructor() {
     this.baseUrl = `${process.env.REACT_APP_BASEURL}/products`;
   }
   async getOneProduct(id) {
@@ -51,7 +51,8 @@ class ProductService {
     return await axios.get(url).then((resp) => resp.data);
   }
   async getListByString(name) {
-    return await axios.get(name).then((resp) => resp.data);
+    const url = `${this.baseUrl}/Search/${name}`;
+    return await axios.get(url).then((resp) => resp.data);
   }
   async productBrand(id) {
     const url = `${this.baseUrl}/productbrand/${id}`;
@@ -85,21 +86,21 @@ class ProductService {
     const url = `${this.baseUrl}/productsizelist/${id}`;
     return await axios.get(url).then((resp) => resp.data);
   }
-  async productPrice1(){
-    const url= `${this.baseUrl}/productprice1`;
-    return await axios.get(url).then((resp)=>resp.data)
+  async productPrice1() {
+    const url = `${this.baseUrl}/productprice1`;
+    return await axios.get(url).then((resp) => resp.data);
   }
-  async productPrice2(){
-    const url= `${this.baseUrl}/productprice2`;
-    return await axios.get(url).then((resp)=>resp.data)
+  async productPrice2() {
+    const url = `${this.baseUrl}/productprice2`;
+    return await axios.get(url).then((resp) => resp.data);
   }
-  async productPrice3(){
-    const url= `${this.baseUrl}/productprice3`;
-    return await axios.get(url).then((resp)=>resp.data)
+  async productPrice3() {
+    const url = `${this.baseUrl}/productprice3`;
+    return await axios.get(url).then((resp) => resp.data);
   }
-  async productPrice4(){
-    const url= `${this.baseUrl}/productprice4`;
-    return await axios.get(url).then((resp)=>resp.data)
+  async productPrice4() {
+    const url = `${this.baseUrl}/productprice4`;
+    return await axios.get(url).then((resp) => resp.data);
   }
 }
 export default ProductService;

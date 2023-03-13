@@ -26,10 +26,6 @@ export default function ProductHomeList() {
 
         <Product2Home  key={product.productId} product={product} />
       ))}
-      
-       <Typography  sx={{mt:5,pl:70}} variant='h6' display='block' gutterBottom>
-      Popular products ({products.length})
-    </Typography>
     </Grid>
   );
 }

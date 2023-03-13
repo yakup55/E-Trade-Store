@@ -16,14 +16,15 @@ import {
   productActive,
   productPassive,
 } from "../../../../redux/actions/productActions";
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 export default function AdminProductList() {
   const { products } = useSelector((state) => state.product);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getProductList());
-  }, []);
+  }, [dispatch]);
   const handleProductActive=(id)=>{
     dispatch(productActive(id));
     navigate("/admin/products/list");
@@ -41,8 +42,6 @@ export default function AdminProductList() {
       })
     );
   };
-
-
   return (
     <Container>
       <br></br>
@@ -78,7 +77,13 @@ export default function AdminProductList() {
               </TableCell>
               <TableCell>{product.productPrice}</TableCell>
               <TableCell>{product.categoryId}</TableCell>
-              <TableCell>{product.productStatus}</TableCell>
+              {product.productStatus===true&&(
+                <TableCell><CheckCircleIcon></CheckCircleIcon></TableCell>
+              )}
+                 {product.productStatus===false&&(
+                <TableCell><HighlightOffIcon></HighlightOffIcon></TableCell>
+              )}
+              
               <TableCell><Button style={{backgroundColor:"yellow",color:"black"}} onClick={()=>handleProductActive(product.productId)}>Aktif</Button></TableCell>
               <TableCell><Button style={{backgroundColor:"green",color:"black"}} onClick={()=>handleProductPassive(product.productId)}>Pasif</Button></TableCell>
          <TableCell><Button style={{backgroundColor:"orange",color:"black"}} onClick={()=>navigate(`/admin/products/update/${product.productId}`)}>Update</Button></TableCell>    

@@ -23,16 +23,6 @@ export default function CategoryList() {
           <Category key={category.categoryId} category={category} />
         ))}
       </Grid>
-
-      <Typography
-        sx={{ mt: 3 }}
-        align="center"
-        variant="h6"
-        display="block"
-        gutterBottom
-      >
-        Populars category ({categories.length}) 
-      </Typography>
     </Container>
   );
 }

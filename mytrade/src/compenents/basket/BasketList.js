@@ -38,7 +38,6 @@ export default function BasketList() {
     );
   };
   const dispatch = useDispatch();
-  console.log(carts);
   const onaySepet = () => {
     dispatch(
       openSnacbar({

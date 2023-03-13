@@ -1,6 +1,5 @@
 import * as React from "react";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +18,6 @@ export default function SimpleSnackBar() {
     if (reason === "clickaway") {
       return;
     }
-
     dispatch(closeSnacbar())
   };
 

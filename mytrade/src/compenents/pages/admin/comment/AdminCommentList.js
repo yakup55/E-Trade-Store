@@ -18,7 +18,8 @@ import {
   getCommentList,
   getDeleteComment,
 } from "../../../../redux/actions/commentActions";
-
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 export default function AdminCommentList() {
   const { comments } = useSelector((state) => state.comment);
   const navigate = useNavigate();
@@ -69,7 +70,13 @@ export default function AdminCommentList() {
               <TableCell>{comment.commentId}</TableCell>
               <TableCell>{comment.commentName}</TableCell>
               <TableCell>{comment.message}</TableCell>
-              <TableCell>{comment.commentStatus}</TableCell>
+              {comment.commentStatus===true&&(
+                    <TableCell><CheckCircleIcon></CheckCircleIcon></TableCell>
+              )}
+            {comment.commentStatus===false&&(
+                    <TableCell><HighlightOffIcon></HighlightOffIcon></TableCell>
+              )}
+          
               <TableCell>{comment.productId}</TableCell>
 
               <TableCell>
